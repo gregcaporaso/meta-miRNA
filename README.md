@@ -7,4 +7,4 @@ meta-miRNA is a tool for allowing microRNA meta analysis. Users can download pub
 
 Note:
 
-This tool is untested and you should NOT use this version until this message will be removed andtests are added
+This tool is untested and you should NOT use this version until this message will be removed and tests are added
