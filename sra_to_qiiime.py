@@ -28,8 +28,9 @@ sra_dump_path = "$HOME/sratoolkit.2.3.1-mac64/bin/fastq-dump.2.3.1"
 fastq_to_fasta = "$HOME/SHRiMP_2_2_2/utils/fastq_to_fasta"
 
     def run(self, **kwargs):
+        
         option_parser, opts, args =\
-       parse_command_line_parameters(**script_info)
+       #parse_command_line_parameters(**script_info)
     input_filepaths = glob(opts.input_glob)
     create_dir(opts.output_dir)
     output_dir = opts.output_dir
