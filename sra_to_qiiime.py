@@ -22,10 +22,10 @@ class SraToQiime(Command):
                   Default=True)
     ])
 
-# sratoolkit and SCHIRMP are required to be installed by the User so that the tools sra_dumo and fastq_to_fasta can be called in the command line with the User $HOME.
+# sratoolkit and SCHIRMP are required to be installed by the User so that the tools sra_dumo and fastq_to_fasta can be called in the command line within the User $HOME.
 
 sra_dump_path = "$HOME/sratoolkit.2.3.1-mac64/bin/fastq-dump.2.3.1"
-fastq_to_fasta = "/HOME/SHRiMP_2_2_2/utils/fastq_to_fasta"
+fastq_to_fasta = "$HOME/SHRiMP_2_2_2/utils/fastq_to_fasta"
 
     def run(self, **kwargs):
         option_parser, opts, args =\
