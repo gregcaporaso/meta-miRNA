@@ -31,9 +31,11 @@ fastq_to_fasta = "$PATH/fastq_to_fasta"
         
     
     
-    input_filepaths = glob(opts.input_glob)
-    create_dir(opts.output_dir)
-    output_dir = opts.output_dir
+    input_filepaths = Kwargs['input_sra']
+    
+    create_dir = Kwargs['output_dir']
+    
+    output_dir = Kwargs['output_dir']
 
 
     for input_filepath in input_filepaths:
@@ -60,6 +62,7 @@ fastq_to_fasta = "$PATH/fastq_to_fasta"
     
 
 CommandConstructor = sra_to_qiime
+
 
 
 
