@@ -29,8 +29,10 @@ fastq_to_fasta = "$HOME/SHRiMP_2_2_2/utils/fastq_to_fasta"
 
     def run(self, **kwargs):
         
-        option_parser, opts, args =\
+        #option_parser, opts, args =\
        #parse_command_line_parameters(**script_info)
+    
+    
     input_filepaths = glob(opts.input_glob)
     create_dir(opts.output_dir)
     output_dir = opts.output_dir
@@ -40,24 +42,26 @@ fastq_to_fasta = "$HOME/SHRiMP_2_2_2/utils/fastq_to_fasta"
         output_filepath = join(output_dir, input_filepath + ".fastq")
       command = "%s %s -O %s" % (sra_dump_path, input_filepath, output_filepath)
 
-    	stdout, stderr, ret_val = pyqi_system_call(command)
-    	command = "rm %s" % (input_filepath)
+     stdout, stderr, ret_val = pyqi_system_call(command)
+     command = "rm %s" % (input_filepath)
 
-    	stdout, stderr, ret_val = pyqi_system_call(command)
+     stdout, stderr, ret_val = pyqi_system_call(command)
 
-    	command = "%s %s/*.fastq > %s.fast" % (fastq_to_fasta, output_filepath, output_filepath)
+     command = "%s %s/*.fastq > %s.fast" % (fastq_to_fasta, output_filepath, output_filepath)
 
-    	stdout, stderr, ret_val = qiime_system_call(command)
-    	command = "rm %s/*.fastq" % (output_filepath)
+     stdout, stderr, ret_val = pyqi_system_call(command)
+     command = "rm %s/*.fastq" % (output_filepath)
 
-    	stdout, stderr, ret_val = qiime_system_call(command)
-    	command = "sed 's/\./_/g;s/ .*$//g' %s*.fast > %s.fasta" % (output_filepath, output_filepath)
+     stdout, stderr, ret_val = pyqi_system_call(command)
+     command = "sed 's/\./_/g;s/ .*$//g' %s*.fast > %s.fasta" % (output_filepath, output_filepath)
 
-    	stdout, stderr, ret_val = qiime_system_call(command)
+     stdout, stderr, ret_val = pyqi_system_call(command)
         command = "rm %s*.fast" % (input_filepath)
 
-    	stdout, stderr, ret_val = qiime_system_call(command)
-    	
+     stdout, stderr, ret_val = pyqi_system_call(command)
+    
 if __name__ == "__main__":
     main()
 CommandConstructor = sra_to_qiime
+
+
