@@ -40,10 +40,10 @@ fastq_to_fasta = "$HOME/SHRiMP_2_2_2/utils/fastq_to_fasta"
         output_filepath = join(output_dir, input_filepath + ".fastq")
       command = "%s %s -O %s" % (sra_dump_path, input_filepath, output_filepath)
 
-    	stdout, stderr, ret_val = qiime_system_call(command)
+    	stdout, stderr, ret_val = pyqi_system_call(command)
     	command = "rm %s" % (input_filepath)
 
-    	stdout, stderr, ret_val = qiime_system_call(command)
+    	stdout, stderr, ret_val = pyqi_system_call(command)
 
     	command = "%s %s/*.fastq > %s.fast" % (fastq_to_fasta, output_filepath, output_filepath)
 
