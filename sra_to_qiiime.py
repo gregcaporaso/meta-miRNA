@@ -1,5 +1,4 @@
-
-    #!/usr/bin/env python
+#!/usr/bin/env python
 from __future__ import division
 
 __author__ = "Giorgio Casaburi and Greg Caporaso"
@@ -16,22 +15,20 @@ class SraToQiime(Command):
     BriefDescription = "post split libraries format: This script allows to convert .sra miRNA sequence data into a QIIME compatible format"
     LongDescription = "A script for converting SRA miRNA sequence data into a format that can be used with QIIME's closed reference OTU picking workflows. THIS CODE IS CURRENTLY UNTESTED. YOU SHOULD NOT USE THIS VERSION OF THE CODE. THIS MESSAGE WILL BE REMOVED WHEN TESTS ARE ADDED."
     Parameters = ParameterCollection([
-        Parameter(Name='-i', DataType=str,
+        Parameter(Name='input_sra', DataType=str,
                   Description='your input .sra file', Required=True),
-        Parameter(Name='-o', DataType=str,
+        Parameter(Name='output_dir', DataType=str,
                   Description='the output directory', Required=True,
                   Default=True)
     ])
 
 # sratoolkit and SCHIRMP are required to be installed by the User so that the tools sra_dumo and fastq_to_fasta can be called in the command line within the User $HOME.
 
-sra_dump_path = "$HOME/sratoolkit.2.3.1-mac64/bin/fastq-dump.2.3.1"
-fastq_to_fasta = "$HOME/SHRiMP_2_2_2/utils/fastq_to_fasta"
+sra_dump_path = "$PATH/fastq-dump.2.3.1"
+fastq_to_fasta = "$PATH/fastq_to_fasta"
 
     def run(self, **kwargs):
         
-        #option_parser, opts, args =\
-       #parse_command_line_parameters(**script_info)
     
     
     input_filepaths = glob(opts.input_glob)
@@ -61,7 +58,8 @@ fastq_to_fasta = "$HOME/SHRiMP_2_2_2/utils/fastq_to_fasta"
 
      stdout, stderr, ret_val = pyqi_system_call(command)
     
-if __name__ == "__main__":
-    main()
+
 CommandConstructor = sra_to_qiime
+
+
 
