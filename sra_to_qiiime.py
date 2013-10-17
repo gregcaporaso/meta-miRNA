@@ -35,7 +35,7 @@ fastq_to_fasta = "$HOME/SHRiMP_2_2_2/utils/fastq_to_fasta"
     
     input_filepaths = glob(opts.input_glob)
     create_dir(opts.output_dir)
-    output_dir = opts.output_dir
+    output_dir = opts.output_dir 
 
 
     for input_filepath in input_filepaths:
