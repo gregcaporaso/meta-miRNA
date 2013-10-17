@@ -20,7 +20,6 @@ Once the sequences are extracted from the .sra archive they are made compatibale
 5. Computing principal coordinate analysis with Bray Curtis
 
 
-
 Note:
 
 This tool is untested and you should NOT use this version until this message will be removed and tests are added
