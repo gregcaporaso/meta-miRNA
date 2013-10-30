@@ -1,4 +1,4 @@
-miMAP - miRNAs meta analysis pipeline
+miMAP - miRNA meta analysis pipeline
 ==========
 
 miMAP is a tool for allowing microRNA meta analysis. Users can download public dataset [i.e. from ncbi, The Sequence Read Archive (SRA), http://www.ncbi.nlm.nih.gov/sra] directly processable in the tool or provide their own data.
