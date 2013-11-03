@@ -92,7 +92,7 @@ class FastaToParallelPickOtusUclustRef(Command):
                 print command
             
             
-            # clean up to do
+            # clean up (to do)
             
 
 CommandConstructor = FastaToParallelPickOtusUclustRef
