@@ -57,7 +57,7 @@ class FastaToParallelPickOtusUclustRef(Command):
             input_basename = splitext(input_filename)[0]
             
             # Create and call the parallel_pick_otus_uclust_ref.py command and run it against Ensemble nc_ex_miRNA database
-            command = "%s -i %s -r %s -o %s --enable_rev_strand_match --max_accepts 1 --max_rejects 8 --stepwords 8 --word_length 8" % (self.parallel_pick_otus_uclust_ref_path, input_filepath, self.all_ncrna_except_miRNA_database_dir, self.temp_dir)
+            command = "%s -i %s -r %s -o %s --enable_rev_strand_match --max_accepts 1 --max_rejects 8 --stepwords 8 --word_length 8 -O 20" % (self.parallel_pick_otus_uclust_ref_path, input_filepath, self.all_ncrna_except_miRNA_database_dir, self.temp_dir)
             if self.verbose:
                 print command
             stdout, stderr, ret_val = pyqi_system_call(command)
@@ -77,7 +77,7 @@ class FastaToParallelPickOtusUclustRef(Command):
             
             temp_index_of_otus_hitting_miRbase_fp= join(self.temp_dir, '%s_otus.txt' % input_basename)
             stdout, stderr, ret_val = pyqi_system_call(command)
-            command = "%s -i %s -r %s -o %s --enable_rev_strand_match --max_accepts 1 --max_rejects 8 --stepwords 8 --word_length 8" % (self.parallel_pick_otus_uclust_ref_path, temp_fasta_filtered_fp, mirBase, temp_index_of_otus_hitting_miRbase_fp)
+            command = "%s -i %s -r %s -o %s --enable_rev_strand_match --max_accepts 1 --max_rejects 8 --stepwords 8 --word_length 8 -O 20" % (self.parallel_pick_otus_uclust_ref_path, temp_fasta_filtered_fp, mirBase, temp_index_of_otus_hitting_miRbase_fp)
             stdout, stderr, ret_val = pyqi_system_call(command)
             if self.verbose:
                 print command
