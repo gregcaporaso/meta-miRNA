@@ -19,18 +19,22 @@ from pyqi.core.command import (Command, CommandIn, CommandOut,
 
 class biomtocorediversityanalyses(Command):
     BriefDescription = "This command allows to run core diversity analysis using as input a biom table (i.e. output from fasta_to_closed_reference_otu_picking.py script)"
-    LongDescription = "A command for running core diversity analysis using in Qiime in order to obtain alpha and beta diversity using a miRNAs biom table. Alpha diversity id performed with obsrved specied metric while the beta diversity with bray-curtis. THIS CODE IS CURRENTLY UNTESTED. YOU SHOULD NOT USE THIS VERSION OF THE CODE. THIS MESSAGE WILL BE REMOVED WHEN TESTS ARE ADDED."
+    LongDescription = "A command for running core diversity analyses in order to obtain the alpha and beta diversity using a miRNAs biom table as input. Alpha diversity is performed with observed species metric while the beta diversity with Bray-curtis metric. THIS CODE IS CURRENTLY UNTESTED. YOU SHOULD NOT USE THIS VERSION OF THE CODE. THIS MESSAGE WILL BE REMOVED WHEN TESTS ARE ADDED."
     
     CommandIns = ParameterCollection([
         CommandIn(Name='input_file', DataType=str,
                   Description='directory containing the input biom table', Required=True),
         CommandIn(Name='output_dir', DataType=str,
                   Description='the path where the output of core diversity analysis should be written', Required=True),
+        CommandIn(Name='mapping_file', DataType=str,
+                  Description='the path where the mapping file is located', Required=True),
         CommandIn(Name='sampling_depth', DataType=int,
                   Description='Sequencing depth to use for even sub-sampling and maximum rarefaction depth. You should review the output of print_biom_table_summary.py on the miRNAs biom table to decide on this value', Required=True),
         CommandIn(Name='jobs_to_start', DataType=int,
-                  Description='the number of jobs you want to run in parallel', Default=1)
-    
+                  Description='the number of jobs you want to run in parallel', Default=1),
+        CommandIn(Name='category', DataType=str,
+                  Description='The metadata category or categories to compare (i.e. column headers in the mapping file)', Required = False)
+                  
         ])
 
     CommandOuts = ParameterCollection([
@@ -55,12 +59,13 @@ class biomtocorediversityanalyses(Command):
     def run(self, **kwargs):
         
         input_fp = kwargs['input_file']
-      
+        
+        
         output_dir = kwargs['output_dir']
         
                 
         #Mapping file
-        mapping_file_fp = kwargs['mapping_file_fp']
+        mapping_file_fp = kwargs['mapping_file']
         input_mapping_file_pattern = join(mapping_file_fp,'mapping_file.txt')
         
 
@@ -70,7 +75,7 @@ class biomtocorediversityanalyses(Command):
         input_basename = splitext(input_filename)[0]
             
         #Create and call the core_diversity_analysis.py command and run it using a miRNAs biom table
-        command = "%s -i %s -m %s -e %s -o %s -O %s --suppress_otu_category_significance --nonphylogenetic_diversity" % (self.core_diversity_analyses_path, input_fp, mapping_file_fp, int(kwargs["sampling_depth"]), output_dir, int(kwargs["jobs_to_start"]))
+        command = "%s -i %s -m %s -e %s -o %s -a -O %s -c %s --suppress_otu_category_significance --nonphylogenetic_diversity" % (self.core_diversity_analyses_path, input_fp, mapping_file_fp, int(kwargs["sampling_depth"]), output_dir, int(kwargs["jobs_to_start"]), str(kwargs["category"]))
         if self.verbose:
                 print command
         stdout, stderr, ret_val = pyqi_system_call(command)
