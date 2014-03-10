@@ -2,7 +2,7 @@ miMAP - miRNA meta analysis pipeline
 ====================================
 
 miMAP is a tool for allowing microRNA meta analysis. Users can download public dataset (e.g., from the [Sequence Read Archive (SRA)](http://www.ncbi.nlm.nih.gov/sra) directly processable in the tool or provide their own data.
-Once the sequences are extracted from the .sra archive they are made compatibale to work in Qiime, then the following steps occur:
+Once the sequences are extracted from the .sra archive they are made compatibale to work in QIIME (www.qiime.org), then the following steps occur:
 
 1. Performing a closed-reference miRNAs picking against a modified version of the [Human Ensemble non-coding RNA database](ftp://ftp.ensembl.org/pub/release-73/fasta/homo_sapiens/ncrna/) without the miRNAs annotation.
 
