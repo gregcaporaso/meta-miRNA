@@ -14,16 +14,22 @@ from os.path import join, split, splitext, exists
 from glob import glob
 
 from pyqi.util import pyqi_system_call, remove_files
-from pyqi.core.command import Command, Parameter, ParameterCollection
+from pyqi.core.command import Command, CommandIn,CommandOut,ParameterCollection
 
 class SraToQiime(Command):
     BriefDescription = "post split libraries format: This script allows to convert .sra miRNA sequence data into a QIIME compatible format"
     LongDescription = "A script for converting SRA miRNA sequence data into a format that can be used with QIIME's closed reference OTU picking workflows. THIS CODE IS CURRENTLY UNTESTED. YOU SHOULD NOT USE THIS VERSION OF THE CODE. THIS MESSAGE WILL BE REMOVED WHEN TESTS ARE ADDED."
-    Parameters = ParameterCollection([
-        Parameter(Name='input_dir', DataType=str,
+    CommandIns = ParameterCollection([
+        CommandIn(Name='input_dir', DataType=str,
                   Description='directory containng input .sra files', Required=True),
-        Parameter(Name='output_fp', DataType=str,
+        CommandIn(Name='output_fp', DataType=str,
                   Description='the path where the output fasta file should be written', Required=True)
+    ])
+
+    CommandOuts = ParameterCollection([
+        CommandOut(Name='result', DataType=str,
+                  Description='the final result')
+       
     ])
 
 # sratoolkit and SCHIRMP are required to be installed by the User so that the tools sra_dump and fastq_to_fasta can be called in the command line within the User $HOME.
@@ -71,16 +77,13 @@ class SraToQiime(Command):
                 print command
             
             # clean up
-            if self.verbose:
-                print "Removing files: %s" % " ".join(temp_files_to_remove)
-                print "Removing directories: %s" % " ".join(temp_dirs_to_remove)
-            remove_files(temp_files_to_remove)
-            for temp_dir_to_remove in temp_dirs_to_remove:
-                rmtree(temp_dir_to_remove)
+            #if self.verbose:
+             #   print "Removing files: %s" % " ".join(temp_files_to_remove)
+              #  print "Removing directories: %s" % " ".join(temp_dirs_to_remove)
+            #remove_files(temp_files_to_remove)
+            #for temp_dir_to_remove in temp_dirs_to_remove:
+             #   rmtree(temp_dir_to_remove)
         
         return {'result': output_fp}
 
 CommandConstructor = SraToQiime
-
-
-
