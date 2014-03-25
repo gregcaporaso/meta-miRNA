@@ -1,0 +1,2 @@
+#!/bin/sh
+exec pyqi serve-html-interface -m mimap.interfaces.html.config "$@"
