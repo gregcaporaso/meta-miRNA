@@ -1,0 +1,2 @@
+#!/bin/sh
+exec pyqi --driver-name mimap --command-config-module mimap.interfaces.optparse.config -- "$@"
